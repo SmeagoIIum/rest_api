@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<form method="post" th:action="@{/}" >
+  <label for="airport dropdown menu1">From</label>
+  <select class="form-control" id="airport dropdown menu1" th:name="airport1_id">
+    <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name} + ' ('
+                   + ${airport.iataCode} + ')'"></option>
+  </select>
+  <label for="airport dropdown menu2">To</label>
+  <select class="form-control" id="airport dropdown menu2" th:name="airport2_id">
+    <option th:each="airport : ${airports}" th:value="${airport.id}" th:text="${airport.name} + ' ('
+                   + ${airport.iataCode} + ')'"></option>
+  </select>
+  <label>Roundtrip</label>
+  <input type="checkbox" th:name="isRoundtrip" /><br/>
+  <button class="btn btn-primary" type="submit">Calculate emissions</button>
+</form>
+

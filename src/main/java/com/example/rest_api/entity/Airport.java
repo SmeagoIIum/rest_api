@@ -1,5 +1,9 @@
 package com.example.rest_api.entity;
 
+import com.opencsv.bean.CsvBindByPosition;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,30 +14,43 @@ import java.util.Objects;
 public class Airport {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
 
+    @CsvBindByPosition(position = 0)
     private String iataCode;
 
+    @CsvBindByPosition(position = 1)
     private String name;
 
-    private Double latitudeDeg;
+    @CsvBindByPosition(position = 2)
+    private double latitude;
 
-    private Double longitudeDeg;
+    @CsvBindByPosition(position = 3)
+    private double longitude;
 
+    @CsvBindByPosition(position = 4)
     private String municipality;
 
     public Airport() {
     }
 
-    public Airport(String iataCode, String name, Double latitudeDeg, Double longitudeDeg, String municipality) {
+    public Airport(Long id, String iataCode, String name, double latitude, double longitude, String municipality) {
+        this.id = id;
         this.iataCode = iataCode;
         this.name = name;
-        this.latitudeDeg = latitudeDeg;
-        this.longitudeDeg = longitudeDeg;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.municipality = municipality;
     }
 
+    public Airport(String iataCode, String name, double latitude, double longitude, String municipality) {
+        this.iataCode = iataCode;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.municipality = municipality;
+    }
 
     public String getIataCode() {
         return iataCode;
@@ -51,20 +68,20 @@ public class Airport {
         this.name = name;
     }
 
-    public Double getLatitudeDeg() {
-        return latitudeDeg;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLatitudeDeg(Double latitudeDeg) {
-        this.latitudeDeg = latitudeDeg;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public Double getLongitudeDeg() {
-        return longitudeDeg;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongitudeDeg(Double longitudeDeg) {
-        this.longitudeDeg = longitudeDeg;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getMunicipality() {
@@ -75,11 +92,11 @@ public class Airport {
         this.municipality = municipality;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -88,11 +105,23 @@ public class Airport {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Airport airport = (Airport) o;
-        return Double.compare(airport.latitudeDeg, latitudeDeg) == 0 && Double.compare(airport.longitudeDeg, longitudeDeg) == 0 && Objects.equals(iataCode, airport.iataCode) && Objects.equals(name, airport.name) && Objects.equals(municipality, airport.municipality);
+        return Double.compare(airport.latitude, latitude) == 0 && Objects.equals(iataCode, airport.iataCode) && Objects.equals(name, airport.name) && Objects.equals(longitude, airport.longitude) && Objects.equals(municipality, airport.municipality);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iataCode, name, latitudeDeg, longitudeDeg, municipality);
+        return Objects.hash(iataCode, name, latitude, longitude, municipality);
     }
+
+//    @Override
+//    public String toString() {
+//        return "Airport{" +
+//                "id=" + id +
+//                ", iataCode='" + iataCode + '\'' +
+//                ", name='" + name + '\'' +
+//                ", latitude=" + latitude +
+//                ", longitude=" + longitude +
+//                ", municipality='" + municipality + '\'' +
+//                '}';
+//    }
 }

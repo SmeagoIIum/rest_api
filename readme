@@ -1,3 +1,7 @@
+Web application with the purpose of calculating CO² emissions of flights
 
+Instructions:
 1. Run the application
-2. go to localhost:8080/api/csv/upload in the browser
+2. Go to "localhost:8080" in the browser
+3. Calculate CO² emissions for the desired flight
+4. For a detailed overview of all airports go to localhost:8080/airports

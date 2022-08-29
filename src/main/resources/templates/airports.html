@@ -2,23 +2,16 @@
 <div class="container py-5">
   <div class="row">
     <div class="col-10 mx-auto">
-<!--      <h1>File Upload Status</h1>-->
-      <!--display error if any-->
-      <div class="alert alert-danger" role="alert" th:if="${!status}">
-        <strong>Error:</strong>
-        <span th:text="${message}"></span>
-      </div>
-
       <!--display users list-->
-      <table class="table table-striped" th:if="${status}">
+      <table class="table table-striped">
         <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">id</th>
           <th scope="col">iataCode</th>
           <th scope="col">name</th>
-          <th scope="col">latitudeDeg</th>
-          <th scope="col">longitudeDeg</th>
+          <th scope="col">latitude</th>
+          <th scope="col">longitude</th>
           <th scope="col">municipality</th>
         </tr>
         </thead>
@@ -28,8 +21,8 @@
           <td th:text="${airport.id}"></td>
           <td th:text="${airport.iataCode}"></td>
           <td th:text="${airport.name}"></td>
-          <td th:text="${airport.latitudeDeg}"></td>
-          <td th:text="${airport.longitudeDeg}"></td>
+          <td th:text="${airport.latitude}"></td>
+          <td th:text="${airport.longitude}"></td>
           <td th:text="${airport.municipality}"></td>
         </tr>
         </tbody>
